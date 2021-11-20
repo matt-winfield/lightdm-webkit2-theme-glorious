@@ -3,6 +3,8 @@ class Authenticate {
 		this._passwordBox = document.querySelector('#input-password-box');
 		this._passwordInput = document.querySelector('#input-password');
 		this._buttonAuthenticate = document.querySelector('#button-authenticate');
+		this._buttonAuthenticateImage = document.querySelector('#button-authenticate-image');
+		this._buttonAuthenticateSpinner = document.querySelector('#button-authenticate-spinner');
 		this._passwordInputContainer = document.querySelector('#input-password-container');
 		this._tooltipPassword = document.querySelector('#tooltip-password');
 		this._password = '';
@@ -39,6 +41,8 @@ class Authenticate {
 	// Authentication completed callback
 	_authenticationComplete() {
 		window.authentication_complete = () => {
+			this._buttonAuthenticateImage.classList.remove('hidden');
+			this._buttonAuthenticateSpinner.classList.add('hidden');
 			if (lightdm.is_authenticated) {
 				this._authenticationSuccess();
 			} else {
@@ -113,6 +117,8 @@ class Authenticate {
 		this._buttonAuthenticate.addEventListener(
 			'click',
 			() => {
+				this._buttonAuthenticateImage.classList.add('hidden');
+				this._buttonAuthenticateSpinner.classList.remove('hidden');
 				console.log(lightdm.in_authentication);
 				this._authFailedRemove();
 				this._password = this._passwordInput.value;
@@ -129,6 +135,8 @@ class Authenticate {
 				this._authFailedRemove();
 				this._password = this._passwordInput.value;
 				if (e.key === 'Enter') {
+					this._buttonAuthenticateImage.classList.add('hidden');
+					this._buttonAuthenticateSpinner.classList.remove('hidden');
 					lightdm.respond(String(this._password));
 				}
 			}
