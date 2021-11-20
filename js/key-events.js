@@ -1,5 +1,5 @@
 class KeyEvents {
-	constructor () {
+	constructor() {
 		this._keysLog = {};
 		this._passwordInput = document.querySelector('#input-password');
 		this._modifierKey = null;
@@ -12,7 +12,7 @@ class KeyEvents {
 		this._init();
 	}
 
-	_init () {
+	_init() {
 		this.updateKeyBindsObj();
 		this._onKeyDownEvent();
 		this._onKeyUpEvent();
@@ -66,13 +66,6 @@ class KeyEvents {
 					return;
 				}
 
-				if ((e.key === ' ') || (e.code === 'Space') || (e.code === 'NumpadEnter')) {
-					if (greeterScreen.getGreeterVisibility()) {
-						greeterScreen.toggleGreeter();
-						return;
-					}
-				}
-
 				if (e.key === this._closeKey) {
 					e.preventDefault();
 
@@ -91,7 +84,6 @@ class KeyEvents {
 						return;
 					}
 
-					greeterScreen.toggleGreeter();
 					this._passwordInput.value = '';
 					return;
 				}

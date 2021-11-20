@@ -45,10 +45,10 @@ class SwipeEvent {
 				// Swipe left
 				this._direction = 'left';
 			}
-					
+
 		} else if ((swipedPixelsY > swipedPixelsX) && (swipedPixelsY >= this._thresholdPixel)) {
 			// Swipes in y axis
-				if (this._startY > this._endY) {
+			if (this._startY > this._endY) {
 				// Swipe up
 				this._direction = 'up';
 			} else if (this._startY < this._endY) {
@@ -64,7 +64,7 @@ class SwipeEvent {
 				this._passedCallback(this._passedElement, this._direction);
 				this._resetMouseSwipeEventVariables();
 			}
-		}	
+		}
 	}
 
 	_createMouseEvent() {
@@ -100,7 +100,7 @@ class SwipeEvent {
 				this._swipeEnd();
 			}
 		);
-		
+
 		this._passedElement.addEventListener(
 			'mousedown',
 			e => {

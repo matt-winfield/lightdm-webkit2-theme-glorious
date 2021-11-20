@@ -7,14 +7,14 @@ class Authenticate {
 		this._passwordInputContainer = document.querySelector('#input-password-container');
 		this._tooltipPassword = document.querySelector('#tooltip-password');
 		this._password = '';
-		
+
 		this._init();
-		this._language = new Language;		
+		this._language = new Language();
 	}
 
 	_returnRandomErrorMessages() {
 		const errorMessages = this._language._getErrorMessages();
-		return errorMessages[Math.floor(Math.random() * errorMessages.length)];	
+		return errorMessages[Math.floor(Math.random() * errorMessages.length)];
 	}
 
 	_returnRandomSuccessfulMessages() {
@@ -53,7 +53,7 @@ class Authenticate {
 		// Make password input read-only
 		this._passwordInput.readOnly = true;
 		this._passwordInput.blur();
-		
+
 		// Success messages
 		this._passwordBox.classList.add('authentication-success');
 		this._tooltipPassword.innerText = this._returnRandomSuccessfulMessages();
@@ -142,8 +142,9 @@ class Authenticate {
 		this._authenticationComplete();
 		this._buttonAuthenticateClickEvent();
 		this._passwordInputKeyDownEvent();
+		this._passwordInput.focus();
 		if (!lightdm) {
-			lightdm.onload = function() {
+			lightdm.onload = function () {
 				console.log('Start authentication');
 				this.startAuthentication();
 			};
